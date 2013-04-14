@@ -242,7 +242,6 @@
 				return false;
 			}else{
 				$details = $this->upload_handler->save_file($uploaded_file, $this->images_storage_location);
-				echo $details['file_loc'];exit;
 				if(!isset($details) || !isset($details['file_loc'])){
 					 $this->upload_handler->show_error();
 					 return false; 
