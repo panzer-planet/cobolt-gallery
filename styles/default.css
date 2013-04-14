@@ -1,0 +1,124 @@
+/**
+ * default.css
+ *
+ * The default css scheme for cobolt-gallery
+ * ---------------------------------------------------------------------------
+ * cobolt-gallery : Simple, configurable and easy to deploy php photo gallery 
+ * http://code.google.com/p/cobolt-gallery/
+ * Copyright 2012, Werner Roets and the cobolt-gallery contributors
+ *
+ * Licensed under GNU General Public License v3
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @author		  Werner Roets (cobolt.exe@gmail.com)
+ * @copyright     Copyright 2012, Werner Roets and the cobolt-gallery contributors
+ * @link          http://code.google.com/p/cobolt-gallery/
+ * @version		  0.1beta
+ * @since         0.1alpha
+ * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
+ */
+
+body {}
+
+#cobolt-gallery_content hr {
+	width:100%;
+}
+
+#cobolt-gallery_content table {
+	display:table;
+	margin:0 auto;
+	/*background-color:#d6d6d6;*/
+}
+
+#cobolt-gallery_content table tr td {
+	margin:1.5em;
+	padding:2em;
+	/*background-color:#808080;*/
+}
+
+#cobolt-gallery_content table tr td img {
+	margin:0 auto;
+	display:block;
+	width:auto;
+	height:auto;
+	padding:5px;
+
+	box-shadow:5px 5px 10px 1px #606060;
+	-o-box-shadow:5px 5px 10px 1px #606060;
+	/*-ms-box-shadow:5px 5px 10px 1px #606060;*/
+	-moz-box-shadow:5px 5px 10px 1px #606060;
+	-khtml-box-shadow:5px 5px 10px 1px #606060;
+	-webkit-box-shadow:5px 5px 10px 1px #606060;
+	
+	transition:all 100ms ease;	
+	-o-transition:all 100ms ease;
+	/*-ms-transition:all 100ms ease;*/
+	-moz-transition:all 100ms ease;
+	-khtml-transition:all 100ms ease;
+	-webkit-transition:all 100ms ease;
+	
+}
+
+#cobolt-gallery_content table tr td img:hover {
+	border:0;
+	
+	box-shadow:1px 1px 20px 1px #606060;
+	-o-box-shadow:1px 1px 20px 1px #606060;
+	/*-ms-box-shadow:1px 1px 20px 1px #606060;*/
+	-moz-box-shadow:1px 1px 20px 1px #606060;
+	-khtml-box-shadow:1px 1px 20px 1px #606060;
+	-webkit-box-shadow:1px 1px 20px 1px #606060;
+		
+	transform:scale(1.2);
+	-webkit-transform:scale(1.2);
+	-khtml-transform:scale(1.2);
+	/*-ms-transform:scale(1.2);*/
+	-moz-transform:scale(1.2);
+	-o-transform:scale(1.2);
+}
+
+#settings {
+	
+	/*
+		settings fieldset is hidden by default.
+		js script written to toggle visibility.
+	*/
+	
+	display:none;
+}
+
+.icon{
+	margin: 10px;
+	padding: 3px;
+}
+
+.thumbnail{
+	width: 88%;
+}
+
+#cobolt-gallery_header .cobolt-gallery_message, #cobolt-gallery_header .cobolt-gallery_error {
+	padding: 2px;
+	font-weight: bold;
+	color: #BB3300;
+	float: right;
+}
+
+.cobolt-gallery_message, .cobolt-gallery_error {
+	font-size:0.9em;
+}
+#cobolt-gallery_admin {
+    width:500px;
+    margin: 0px auto;
+    
+}
+
+#gallery_login_form{
+    width: 400px;
+    margin: 0px auto;
+}
+
+input[type=submit], input[type=file], input[type=button]{
+    font-weight: bold;
+    padding: 10px;
+  
+}
