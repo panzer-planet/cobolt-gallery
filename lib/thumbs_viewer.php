@@ -20,10 +20,10 @@
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
 
-	 require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/gallery_settings_manager.php';
-	 require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/gallery_images.php';
-	 require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/image.php';
-	 require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/icon_manager.php';
+	 require_once 'settings/gallery_settings_manager.php';
+	 require_once 'gallery_images.php';
+	 require_once 'lib/image.php';
+	 require_once 'settings/icon_manager.php';
 	 class ThumbsViewer{
 	 	private $gallery_settings_manager, $gallery_images, $image_storage_location, $icon_manager;
 		private $across, $down, $total_pages, $current_page;

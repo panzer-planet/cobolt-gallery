@@ -20,7 +20,7 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/gallery_components.php';
+	require_once 'gallery_components.php';
 	
 	class CoboltGallery{
 		//Contains the GalleryComponents class
@@ -76,7 +76,8 @@
 				//?action=login
 				case 'login':
 					if(isset($_POST['password'])){
-						if(sha1($_POST['password']) == "48181acd22b3edaebc8a447868a7df7ce629920a"){
+						#if(sha1($_POST['password']) == "48181acd22b3edaebc8a447868a7df7ce629920a"){
+						if($_POST['password'] == '123'){
 							if(!isset($_SESSION)){
 								
 							}

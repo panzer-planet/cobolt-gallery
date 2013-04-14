@@ -1,8 +1,13 @@
 <?php
 	/**
-	 * DbSettings
+	 * file_name_coder.php
 	 *
-	 * Enter your database settings here and this class will do the rest.
+	 * Provides a single function: make_unique_filename($filename)
+	 * making use of this function ensures that no two files have duplicate names so
+	 * users will never upload over a file or experience those sort of issues. This also
+	 * ensures that hackers will not know the url of a file they upload and therefore will
+	 * find it harder to access. To ensure that duplicate files are not uploaded an md5 checksum
+	 * can be used.
 	 *
 	 * ---------------------------------------------------------------------------
 	 * cobolt-gallery : Simple, configurable and easy to deploy php photo gallery 
@@ -19,15 +24,15 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	class DbSettings{
-		//Database settings
-		public $db_host, $db_user, $db_name, $db_password;
-		
-		function __construct(){
-			$this->db_host = 'localhost';
-			$this->db_user = 'root';
-			$this->db_name = 'cobolt_gallery';
-			$this->db_password = 'cat55cat';
-		}
-	}
+	 class Util{
+	 	public static function baseDir(){
+	 		
+	 		$baseDir = substr(
+	 			$_SERVER['SCRIPT_FILENAME'],
+	 			0,
+	 			strripos($_SERVER['SCRIPT_FILENAME'],'/')+1
+	 		);
+	 		return $baseDir;
+	 	}
+	 }
 ?>

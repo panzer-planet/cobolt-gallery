@@ -19,12 +19,13 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/gallery_settings_manager.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/upload_handler.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/thumbs_creator.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/gallery_images.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/thumbs_viewer.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/icon_manager.php';
+	 
+	require_once 'settings/gallery_settings_manager.php';
+	require_once 'lib/upload_handler.php';
+	require_once 'lib/thumbs_creator.php';
+	require_once 'gallery_images.php';
+	require_once 'lib/thumbs_viewer.php';
+	require_once 'settings/icon_manager.php';
 	
 	class GalleryComponents {
 		//database and file handler classes
@@ -38,8 +39,8 @@
 			//We initialise UploadHandler so we can easily upload files
 			$this -> upload_handler = new UploadHandler();
 			//Set where we want to store the images
-			$this -> images_url_base = '/cobolt-gallery/gallery_images/';//Not sure this is safe
-			$this -> images_storage_location = $_SERVER['DOCUMENT_ROOT'] . $this->images_url_base;
+			$this -> images_url_base = 'gallery_images/';//Not sure this is safe
+			$this -> images_storage_location = $this->images_url_base;
 			
 			$this -> gallery_images = new GalleryImages();
 			$this -> thumbs_viewer = new ThumbsViewer();
@@ -241,6 +242,7 @@
 				return false;
 			}else{
 				$details = $this->upload_handler->save_file($uploaded_file, $this->images_storage_location);
+				echo $details['file_loc'];exit;
 				if(!isset($details) || !isset($details['file_loc'])){
 					 $this->upload_handler->show_error();
 					 return false; 

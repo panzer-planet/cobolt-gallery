@@ -1,3 +1,4 @@
+
 <?php
 
 	/**
@@ -48,7 +49,7 @@
 	</head>
 	<body>
 
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/cobolt-gallery/cobolt_gallery.php'; ?>
+		<?php include 'cobolt_gallery.php'; ?>
 
 	</body>
 </html>

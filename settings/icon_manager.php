@@ -19,8 +19,8 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/db_settings.php';
-	 
+	require_once 'settings/db_settings.php';
+	require_once 'lib/util.php';	 
 	 class IconManager{
 	 	private $mysqli;
 	 	public $next_arrow, $previous_arrow, $admin_button, $view_thumbnails, $next_page, $previous_page;
@@ -37,7 +37,7 @@
 				//Database connetion FAILED
 				die ("Failed to connect to MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error);
 			}
-			$icon_dir = "/cobolt-gallery/icons/{$icon_set}/";
+			$icon_dir = "icons/{$icon_set}/";
 
 			$this->next_arrow = $icon_dir . $this->get_icon($icon_set, 'next_arrow');
 			$this->previous_arrow = $icon_dir . $this->get_icon($icon_set, 'previous_arrow');

@@ -21,7 +21,8 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	 require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/file_name_coder.php';
+	 require_once 'lib/file_name_coder.php';
+	 require_once 'lib/util.php';
 	 
 	class UploadHandler{
 		//Holds the uploaded file array and desired types array once set
@@ -127,7 +128,7 @@
 				 * file accordingly. We use make_unique_filename from 
 				 */
 				 $save_location = $destination_dir . make_unique_filename($this->filename);
-				 if(!move_uploaded_file($this->tmp_name,$save_location)){
+				 if(!move_uploaded_file($this->tmp_name,Util::baseDir().$save_location)){
 				 	$this->last_error = "UploadHandler Error: Failed to move uploaded file";
 				 	return false;
 				 }else{

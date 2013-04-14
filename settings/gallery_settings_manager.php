@@ -21,7 +21,7 @@
 	 */
 	 
 	 // document root only gets localhost or
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/db_settings.php';
+	require_once 'settings/db_settings.php';
 	
 	class GallerySettingsManager{
 		

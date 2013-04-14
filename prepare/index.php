@@ -22,8 +22,8 @@
 	 * @since         0.1alpha
 	 * @license       GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 	 */
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/settings/db_settings.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cobolt-gallery/lib/prepare_database.php';
+	require_once '../settings/db_settings.php';
+	require_once '../lib/prepare_database.php';
 	
 	//Initialise the objects we make use of
 	$settings = new DbSettings();

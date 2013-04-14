@@ -27,7 +27,13 @@
 		//Specify source location and save directory, then thumbnail and pagesize width
 		//returns an array of the refactored images' locations.
 		public function makeminimes($source_location, $save_dir, $thumbsize_width, $pagesize_width){
-			
+
+			if(!$source_location){ 
+				throw new Exception('source location not set when calling makeminimes(source, save_dir, thumb_widtht, pagesize_width');
+			}
+			if(!$save_dir){ 
+				throw new Exception('save_dir not set when calling makeminimes(source, save_dir, thumb_widtht, pagesize_width');
+			}
 			$info = getimagesize($source_location);
 			$this->source_width = $info[0];
 			$this->source_height = $info[1];
@@ -53,7 +59,6 @@
 							 'pagesize_location' => $pagesize_loc);
 				}
 			}
-			
 			if($info['mime'] == 'image/png'){
 				$source_image = imagecreatefrompng($source_location);
 			}else if($info['mime'] == 'image/jpeg'){
@@ -64,6 +69,7 @@
 				echo "Image or filetype not supported";
 				return false;
 			}
+			
 			//Only make this reduction on big images (not always needed)
 			if($make_pagesize){
 				$pagesize_image = $this->refactor($source_image, $pagesize_width);
