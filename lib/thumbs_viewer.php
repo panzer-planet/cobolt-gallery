@@ -35,7 +35,8 @@
 	 		$this->gallery_settings_manager = new GallerySettingsManager();
 			$this->across = $this->gallery_settings_manager->get_setting('x_thumbs');
 			$this->down = $this->gallery_settings_manager->get_setting('y_thumbs');
-			$this->image_storage_location = $this->gallery_settings_manager->get_setting('image_storage_location');
+			#$this->image_storage_location = $this->gallery_settings_manager->get_setting('image_storage_location');
+			$this->image_storage_location = 'gallery_images/';
 			$this->icon_manager = new IconManager('glyph');
 			$this->gallery_images = new GalleryImages();
 	 	}
