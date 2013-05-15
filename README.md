@@ -5,9 +5,11 @@ Simple, configurable and easy to deploy php photo gallery
 requires:
 php5
 php5-gd
-mysql server
+mysql-server
+jQuery 1.9+
 
-Welcome
+Welcome.
+
 I was not satisfied with other open source php gallery software, so I decided to write my own. cobolt-gallery is designed to be highly configurable, very easy to install and use and of course ensures that images are always displayed at top quality!
 
 Features:
