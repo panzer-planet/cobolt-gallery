@@ -37,7 +37,7 @@
 			//We initialise GallerySettingsManager so we can get and set these easily
 			$this -> gallery_settings_manager = new GallerySettingsManager();
 			//We initialise UploadHandler so we can easily upload files
-			$this -> upload_handler = new UploadHandler();
+			$this -> upload_handler = new UploadHandler('gallery_images/');
 			//Set where we want to store the images
 			$this -> images_url_base = 'gallery_images/';//Not sure this is safe
 			$this -> images_storage_location = $this->images_url_base;
@@ -142,7 +142,17 @@
 						$y_thumbs_options .= "<option>{$i}</option>";
 					}
 				}
-				$js_toggle = "javascript:toggleSettings(\"settings\");toggleValue(\"toggleSettings\");";
+				echo "<script>
+						function toggleSettings(){ 
+							var settings = $('#settings');
+							var toggleButton = $('#toggleSettings');
+							settings.toggle(280,'swing',function(){
+								toggleButton.val(toggleButton.val() == 'Show Advanced' ? 'Hide Advanced' : 'Show Advanced');
+							});
+						
+						}
+					</script>";
+
 				$content = "
 				<div id='cobolt-gallery_admin' name='adminDiv'>
 					<fieldset id='imageUpload'>
@@ -159,7 +169,7 @@
 						</form>
 					</fieldset>
 					
-					<input name='toggleSettings' id='toggleSettings' type='button' value='Show Advanced' onclick='{$js_toggle}'/>
+					<input name='toggleSettings' id='toggleSettings' type='button' value='Show Advanced' onclick='toggleSettings();'/>
 					
 					<fieldset id='settings'>
 						<legend>Advanced Settings</legend>
@@ -237,11 +247,11 @@
 		}
 	
 		function upload($uploaded_file) {
-			if(!$this->upload_handler->set_allowed_types(array('image'))){
+			if(!$this->upload_handler->set_allowed_types(array('image','archive'))){
 				$this->upload_handler->show_error();
 				return false;
 			}else{
-				$details = $this->upload_handler->save_file($uploaded_file, $this->images_storage_location);
+				$details = $this->upload_handler->save_file($uploaded_file);
 				if(!isset($details) || !isset($details['file_loc'])){
 					 $this->upload_handler->show_error();
 					 return false; 
@@ -249,7 +259,7 @@
 				else{
 					//We must store the info in the db
 					if($details['file_type'] == 'zip'){
-						//TODO unzip
+						$result = $this->upload_handler->process_zip($this->images_storage_location);
 					}else{
 						if($refactored = $this->thumbs_creator->makeminimes($details['file_loc'],
 																	$this->images_storage_location,

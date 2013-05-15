@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 
 	/**
 	 * Deployment example
@@ -27,24 +28,7 @@
 	<head>
 		<link rel='stylesheet' href='styles/default.css'/>
 		<title>Cobolt galllery test</title>
-		<script type="text/javascript"><!-- fix button value property change -->
-			<!-- 
-				function toggleSettings(id) {
-					var e = document.getElementById(id);
-					if(e.style.display == 'block') {
-					} else {
-					}
-				}
-				function toggleValue(id) {
-					var e = document.getElementById(id);
-					
-					if(e.value == 'Show Advanced') {
-						e.value = 'Hide Advanced';
-					} else {
-						e.value = 'Show Advanced';
-					}
-				}
-			//-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 		</script>
 	</head>
 	<body>

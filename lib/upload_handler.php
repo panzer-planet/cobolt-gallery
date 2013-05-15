@@ -26,9 +26,9 @@
 	 
 	class UploadHandler{
 		//Holds the uploaded file array and desired types array once set
-		private $uploaded_file, $desired_types;
+		private $uploaded_file, $desired_types, $upload_directory;
 		//Holds information on the file once save_file is complete
-		private $filename, $tmp_name, $identified_type, $mime_type, $size;
+		private $filename, $tmp_name, $save_location, $identified_type, $mime_type, $size;
 		private $last_error = 'no error';
 		
 		/* You can add types here, even custom types
@@ -47,8 +47,8 @@
 		private $video = array('mpeg', 'avi');
 		private $document = array('txt','rtf','doc','docx','odf','ppt','xls');
 		
-		function __construct(){
-			
+		function __construct($upload_directory){
+			$this->upload_directory = $upload_directory;
 		}
 		
 		/* set_allowed_types
@@ -82,7 +82,7 @@
 		 * description:
 		 *  Use this function to save the file uploaded by the user.
 		 */
-		public function save_file($uploaded_file,$destination_dir){
+		public function save_file($uploaded_file){
 			//Not working. removing this seemed to fix a bug
 			//Ensure the value passed through is a valid temp stored uploaded file
 			/*if(!is_uploaded_file($uploaded_file['tmp_name'])){
@@ -127,13 +127,13 @@
 				 * the uploaded file is on the desired list so we can process the
 				 * file accordingly. We use make_unique_filename from 
 				 */
-				 $save_location = $destination_dir . make_unique_filename($this->filename);
+				 $save_location = $this->upload_directory . make_unique_filename($this->filename);
 				 if(!move_uploaded_file($this->tmp_name,Util::baseDir().$save_location)){
 				 	$this->last_error = "UploadHandler Error: Failed to move uploaded file";
 				 	return false;
 				 }else{
 				 	//Successfully stored in permanent location
-				 	
+				 	$this->save_location = $save_location;
 				 	//$this->make_safe($save_location); //MUST IMPLEMENT TO AVOID CODE INJECTION
 				 	return array ('file_loc' => $save_location,
 									'file_type' => $this->identified_type,
@@ -142,6 +142,20 @@
 				 }
 			}
 			
+		}
+		
+		public function process_zip(){
+			$zip = new ZipArchive();
+			if($zip->open($this->save_location)){
+				$tmp_dir = $this->upload_directory . make_unique_filename($this->filename);
+					if(mkdir($tmp_dir,0770)){
+						$zip->extractTo($tmp_dir);
+						$zip->close();
+						rmdir($tmp_dir);
+					}else{
+						$this->last_error = "Couldn't create temporary file for ";
+					}
+			}else{ return false; }
 		}
 		
 		//Returns the last error that occured
@@ -221,6 +235,7 @@
 					Valid types include:<br/>';
 			return false;
 		}
+		
 		
 	}
 
